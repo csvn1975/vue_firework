@@ -1,15 +1,37 @@
 <template>
+   <div id="app">
   <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <h1
+    @click= "isStartFire = true"
+  >Click here to start Firework</h1>
+  
+  <Firework position = "center"
+    v-if = "isStartFire"
+    @Close = "isStartFire=false"
+
+  > Welcom to Firework 
+  </Firework>
+   </div>
+  
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+ import Firework from '@/components/Firework/Firework.vue';
+ import { ref } from 'vue';
 
 export default {
   name: 'App',
+
+  setup() {
+     const isStartFire =  ref(false);
+     return {
+       isStartFire
+     }
+
+  },
+
   components: {
-    HelloWorld
+    Firework
   }
 }
 </script>
@@ -21,6 +43,13 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  margin-top: 60px;
+  padding-top: 60px;
+  background-color: skyblue;
+  height: 100vh;
 }
+
+h1{
+  color : white;
+  cursor: pointer;
+}  
 </style>
